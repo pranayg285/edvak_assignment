@@ -118,11 +118,12 @@ def detect_intents(message: str) -> list[str]:
     return intents
 
 
-def identify_patient(message: dict) -> tuple[dict | None, list[str]]:
+def identify_patient(message: dict) -> tuple[dict | None, bool, list[str]]:
     """Look up a patient, then verify the sender's available contact details."""
     calls = []
     sender_name = message.get("from_name", "")
     contact = message.get("from_contact", "")
+    body = message.get("body", "")
 
     calls.append("find_patient")
 
@@ -140,19 +141,23 @@ def identify_patient(message: dict) -> tuple[dict | None, list[str]]:
             sender_email=contact if "@" in contact else None,
             stated_dob=message.get("stated_dob"),
         )
+        # Return the patient regardless of verification status
+        return patient, verified, calls
 
-        if verified:
-            return patient, calls
-
-    caregiver_patient, caregiver_calls = (
-        identify_authorized_caregiver(message)
-    )
+    caregiver_patient, caregiver_calls = identify_authorized_caregiver(message)
     calls.extend(caregiver_calls)
 
     if caregiver_patient:
-        return caregiver_patient, calls
+        return caregiver_patient, True, calls
 
-    return None, calls
+    # Fallback: Attempt to identify an unverified patient by name in the sender field or message body
+    from patient_lookup import load_patients
+    for p in load_patients():
+        p_name = p.get("name", "")
+        if p_name and (p_name.lower() == sender_name.lower() or p_name.lower() in body.lower()):
+            return p, False, calls
+
+    return None, False, calls
 
 def combine_urgency(llm_result, rules_result, message_body=""):
     """
@@ -233,7 +238,7 @@ def process_message(message: dict) -> dict:
         )
 
     # Step 4: Identify and verify the patient.
-    patient, lookup_calls = identify_patient(message)
+    patient, is_verified, lookup_calls = identify_patient(message)
     tool_calls.extend(lookup_calls)
     patient_id = patient.get("id") if patient else None
 
@@ -251,21 +256,21 @@ def process_message(message: dict) -> dict:
         actions.append("no_action")
         reply = ""
 
-    elif "third_party" in intents and not patient:
+    elif "third_party" in intents and not is_verified:
         actions.append("decline_disclosure")
         reply = (
             "For privacy, we cannot confirm or disclose patient information "
             "without verifying the requester and confirming authorization."
         )
 
-    elif not patient and "new_patient" in intents:
+    elif not is_verified and "new_patient" in intents:
         actions.extend(["answer_directly", "offer_new_patient_booking"])
         reply = (
             "Hello! We can help you explore becoming a patient and scheduling "
             "a physical. Please contact the clinic to arrange your first visit."
         )
 
-    elif not patient:
+    elif not is_verified:
         actions.append("request_verification")
         reply = (
             "Before we can help with patient-specific information or requests, "

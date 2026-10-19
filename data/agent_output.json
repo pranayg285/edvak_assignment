@@ -226,7 +226,7 @@
   },
   {
     "id": "M011",
-    "patient_id": null,
+    "patient_id": "P002",
     "intents": [
       "records"
     ],
@@ -388,18 +388,15 @@
     "id": "M018",
     "patient_id": "P022",
     "intents": [
-      "refill",
-      "admin"
+      "refill"
     ],
     "urgency": "routine",
     "actions": [
       "prepare_refill_for_approval",
-      "route_to_front_desk",
       "flag_suspicious_instruction"
     ],
     "routed_to": [
-      "provider_refills",
-      "front_desk"
+      "provider_refills"
     ],
     "tool_calls": [
       "llm_classify_message",
@@ -577,14 +574,17 @@
     "id": "M026",
     "patient_id": "P016",
     "intents": [
-      "refill"
+      "refill",
+      "clinical"
     ],
     "urgency": "urgent",
     "actions": [
-      "route_to_provider"
+      "route_to_provider",
+      "route_to_clinician"
     ],
     "routed_to": [
-      "provider_refills"
+      "provider_refills",
+      "clinician_routine"
     ],
     "tool_calls": [
       "llm_classify_message",
@@ -598,7 +598,7 @@
   },
   {
     "id": "M027",
-    "patient_id": null,
+    "patient_id": "P013",
     "intents": [
       "records",
       "third_party"
