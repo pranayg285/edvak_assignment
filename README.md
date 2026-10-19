@@ -52,27 +52,37 @@ The descriptions below reflect the modules built during this project. Keep the f
 
 ## Challenges and how they were addressed
 1. Combining LLM flexibility with predictable safety behavior
+
 Challenge: A language model is useful for understanding varied wording, but should not be the sole authority for emergency escalation or policy-sensitive actions.
 
 Approach: Use the LLM for structured intent extraction and deterministic rules for safety-critical checks. Emergency indicators are assessed separately so that a routine LLM label does not silently suppress an emergency signal.
 
 2. Patient identity and privacy
+
 Challenge: A sender may provide a name or date of birth without enough information to securely establish identity. A relative may also ask for information about another patient.
 
 Approach: Separate patient lookup from identity verification, preserve patient_id: null when verification is insufficient, and check caregiver authorization before handling caregiver requests. This can produce a patient-ID mismatch against a permissive sample label, but it avoids treating unverified identity as established.
+
 3. Refill eligibility and prohibited actions
+
 Challenge: A request to refill a medication does not automatically mean a refill can be prepared. Remaining refills, controlled-medication rules, refill timing, and visit requirements can change the correct action.
 
 Approach: Retrieve the patient's medication records, identify the requested medication, and call the refill-eligibility check before selecting an action. The workflow was tightened to fail safely: only a positively eligible result should permit prepare_refill_for_approval; denied, ineligible, or ambiguous results should be routed for appropriate review. This helped eliminate the final reported must_not violations.
+
 4. Matching medication names from natural language
+
 Challenge: Users may mention brand/generic names or different medication-name fields, so exact matching can fail.
 
 Approach: Compare the message text and extracted medication names against the medication records, while retaining a conservative fallback when a requested medication cannot be identified reliably.
+
 5. Appointment scheduling and conflicts
+
 Challenge: A requested time may be unavailable, conflict with an existing appointment, or fall when a provider is unavailable.
 
 Approach: Centralize scheduling logic in AppointmentManager, including provider availability and conflict checks. Offer alternatives when the requested slot cannot be booked instead of claiming that an appointment was made.
+
 6. Evaluation and debugging
+
 Challenge: A batch can have strong urgency results while still missing expected actions or disagreeing with expected patient IDs.
 
 Approach: Build a repeatable evaluator and a failure-inspection script. Use per-message differences and must_not checks to identify concrete defects, then rerun the full batch after changes rather than relying on a few successful examples.
