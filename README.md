@@ -1,4 +1,4 @@
-# edvark_assignment
+# edvak_assignment
 
 ## Overview
 The system processes a batch of 40 sample messages and produces a structured result for each message. It combines an LLM-based message classifier with deterministic rules and clinic-data tools so that key decisions—especially emergency escalation and refill eligibility—are not left entirely to free-form model output.
