@@ -55,6 +55,7 @@ The descriptions below reflect the modules built during this project. Keep the f
 Challenge: A language model is useful for understanding varied wording, but should not be the sole authority for emergency escalation or policy-sensitive actions.
 
 Approach: Use the LLM for structured intent extraction and deterministic rules for safety-critical checks. Emergency indicators are assessed separately so that a routine LLM label does not silently suppress an emergency signal.
+
 2. Patient identity and privacy
 Challenge: A sender may provide a name or date of birth without enough information to securely establish identity. A relative may also ask for information about another patient.
 
