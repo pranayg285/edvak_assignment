@@ -1,0 +1,4 @@
+mcp
+pytest
+pydantic
+python-dotenv
