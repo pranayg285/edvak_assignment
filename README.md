@@ -114,22 +114,29 @@ Evaluation was run against the 40-message sample set supplied with the assignmen
 
 1. Create and activate a virtual environment
 From the project directory in Windows Command Prompt:
+
 python -m venv .venv
+
 .venv\Scripts\activate
 
 2. Install dependencies
 Install the dependencies listed in your requirements.txt if the repository contains one:
+
 pip install -r requirements.txt
 
 3. Configure environment variables
 Create a .env file in the project root:
+
 GROQ_API_KEY=your_groq_api_key
+
 GROQ_MODEL=your_supported_groq_model_id
 
 4. Validate the data
+
 python validate_json.py
 
 5. Run the agent and evaluation
+
 - python agent.py
 - python evaluate_agent.py
 
