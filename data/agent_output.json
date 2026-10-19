@@ -1,0 +1,897 @@
+[
+  {
+    "id": "M001",
+    "patient_id": "P002",
+    "intents": [
+      "refill"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "route_to_provider"
+    ],
+    "routed_to": [
+      "provider_refills"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool",
+      "get_medications",
+      "check_refill_eligibility"
+    ],
+    "reply_draft": "Hi Robert, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M002",
+    "patient_id": "P007",
+    "intents": [
+      "reschedule"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "reschedule_appointment"
+    ],
+    "routed_to": [
+      "front_desk"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool"
+    ],
+    "reply_draft": "Hi Priya, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M003",
+    "patient_id": "P003",
+    "intents": [
+      "clinical"
+    ],
+    "urgency": "emergency",
+    "actions": [
+      "escalate_emergency"
+    ],
+    "routed_to": [
+      "clinician_urgent"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool",
+      "route_message"
+    ],
+    "reply_draft": "Your message describes a possible medical emergency. Call 911 or go to the nearest emergency department now. Do not wait for a reply to this message."
+  },
+  {
+    "id": "M004",
+    "patient_id": "P004",
+    "intents": [
+      "refill"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "route_to_provider"
+    ],
+    "routed_to": [
+      "provider_refills"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool",
+      "get_medications",
+      "check_refill_eligibility"
+    ],
+    "reply_draft": "Hi Thomas, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M005",
+    "patient_id": "P006",
+    "intents": [
+      "refill"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "route_to_provider",
+      "flag_suspicious_instruction"
+    ],
+    "routed_to": [
+      "provider_refills"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool",
+      "get_medications",
+      "check_refill_eligibility"
+    ],
+    "reply_draft": "Hi Marcus, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M006",
+    "patient_id": "P005",
+    "intents": [
+      "refill",
+      "clinical"
+    ],
+    "urgency": "urgent",
+    "actions": [
+      "prepare_refill_for_approval",
+      "route_to_clinician"
+    ],
+    "routed_to": [
+      "provider_refills",
+      "clinician_routine"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool",
+      "get_medications",
+      "check_refill_eligibility"
+    ],
+    "reply_draft": "Hi Emily, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M007",
+    "patient_id": null,
+    "intents": [
+      "new_patient",
+      "schedule"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "answer_directly",
+      "offer_new_patient_booking"
+    ],
+    "routed_to": [],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "check_authorized_caregiver"
+    ],
+    "reply_draft": "Hello! We can help you explore becoming a patient and scheduling a physical. Please contact the clinic to arrange your first visit."
+  },
+  {
+    "id": "M008",
+    "patient_id": "P010",
+    "intents": [
+      "billing"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "route_to_billing"
+    ],
+    "routed_to": [
+      "billing"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool"
+    ],
+    "reply_draft": "Hi Daniel, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M009",
+    "patient_id": "P012",
+    "intents": [
+      "refill"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "prepare_refill_for_approval"
+    ],
+    "routed_to": [
+      "provider_refills"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool",
+      "get_medications",
+      "check_refill_eligibility"
+    ],
+    "reply_draft": "Hi William, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M010",
+    "patient_id": "P013",
+    "intents": [
+      "schedule"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "offer_appointment"
+    ],
+    "routed_to": [
+      "front_desk"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool"
+    ],
+    "reply_draft": "Hi Grace, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M011",
+    "patient_id": null,
+    "intents": [
+      "records"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "request_verification"
+    ],
+    "routed_to": [],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "check_authorized_caregiver"
+    ],
+    "reply_draft": "Before we can help with patient-specific information or requests, please verify your identity through the clinic's approved process."
+  },
+  {
+    "id": "M012",
+    "patient_id": "P014",
+    "intents": [
+      "refill",
+      "clinical"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "route_to_provider",
+      "route_to_clinician"
+    ],
+    "routed_to": [
+      "provider_refills",
+      "clinician_routine"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool",
+      "get_medications",
+      "check_refill_eligibility"
+    ],
+    "reply_draft": "Hi Kevin, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M013",
+    "patient_id": "P015",
+    "intents": [
+      "refill"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "route_to_provider"
+    ],
+    "routed_to": [
+      "provider_refills"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool",
+      "get_medications",
+      "check_refill_eligibility"
+    ],
+    "reply_draft": "Hi Fatima, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M014",
+    "patient_id": "P017",
+    "intents": [
+      "clinical",
+      "third_party"
+    ],
+    "urgency": "emergency",
+    "actions": [
+      "escalate_emergency"
+    ],
+    "routed_to": [
+      "clinician_urgent"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "check_authorized_caregiver",
+      "route_message"
+    ],
+    "reply_draft": "Your message describes a possible medical emergency. Call 911 or go to the nearest emergency department now. Do not wait for a reply to this message."
+  },
+  {
+    "id": "M015",
+    "patient_id": "P009",
+    "intents": [
+      "clinical",
+      "schedule",
+      "third_party"
+    ],
+    "urgency": "urgent",
+    "actions": [
+      "route_to_clinician",
+      "offer_appointment"
+    ],
+    "routed_to": [
+      "clinician_routine",
+      "front_desk"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool"
+    ],
+    "reply_draft": "Hi Anna, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M016",
+    "patient_id": "P018",
+    "intents": [
+      "schedule"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "offer_appointment"
+    ],
+    "routed_to": [
+      "front_desk"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool"
+    ],
+    "reply_draft": "Hi Carlos, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M017",
+    "patient_id": "P020",
+    "intents": [
+      "refill",
+      "clinical"
+    ],
+    "urgency": "emergency",
+    "actions": [
+      "escalate_emergency"
+    ],
+    "routed_to": [
+      "clinician_urgent"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool",
+      "route_message"
+    ],
+    "reply_draft": "Your message describes a possible medical emergency. Call 911 or go to the nearest emergency department now. Do not wait for a reply to this message."
+  },
+  {
+    "id": "M018",
+    "patient_id": "P022",
+    "intents": [
+      "refill",
+      "admin"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "prepare_refill_for_approval",
+      "route_to_front_desk",
+      "flag_suspicious_instruction"
+    ],
+    "routed_to": [
+      "provider_refills",
+      "front_desk"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool",
+      "get_medications",
+      "check_refill_eligibility"
+    ],
+    "reply_draft": "Hi Ahmed, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M019",
+    "patient_id": "P021",
+    "intents": [
+      "refill",
+      "clinical"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "route_to_provider",
+      "route_to_clinician",
+      "flag_suspicious_instruction"
+    ],
+    "routed_to": [
+      "provider_refills",
+      "clinician_routine"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool",
+      "get_medications",
+      "check_refill_eligibility"
+    ],
+    "reply_draft": "Hi Rachel, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M020",
+    "patient_id": "P001",
+    "intents": [
+      "refill"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "prepare_refill_for_approval"
+    ],
+    "routed_to": [
+      "provider_refills"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool",
+      "get_medications",
+      "check_refill_eligibility"
+    ],
+    "reply_draft": "Hi Linda, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M021",
+    "patient_id": "P008",
+    "intents": [
+      "refill"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "route_to_provider"
+    ],
+    "routed_to": [
+      "provider_refills"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool",
+      "get_medications",
+      "check_refill_eligibility"
+    ],
+    "reply_draft": "Hi George, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M022",
+    "patient_id": "P011",
+    "intents": [
+      "cancel"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "cancel_appointment"
+    ],
+    "routed_to": [
+      "front_desk"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool"
+    ],
+    "reply_draft": "Hi Hannah, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M023",
+    "patient_id": "P019",
+    "intents": [
+      "admin"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "route_to_front_desk"
+    ],
+    "routed_to": [
+      "front_desk"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool"
+    ],
+    "reply_draft": "Hi Olivia, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M024",
+    "patient_id": "P023",
+    "intents": [
+      "schedule"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "offer_appointment"
+    ],
+    "routed_to": [
+      "front_desk"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool"
+    ],
+    "reply_draft": "Hi Lucy, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M025",
+    "patient_id": "P024",
+    "intents": [
+      "refill",
+      "billing"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "prepare_refill_for_approval",
+      "route_to_billing"
+    ],
+    "routed_to": [
+      "provider_refills",
+      "billing"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool",
+      "get_medications",
+      "check_refill_eligibility"
+    ],
+    "reply_draft": "Hi Brian, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M026",
+    "patient_id": "P016",
+    "intents": [
+      "refill"
+    ],
+    "urgency": "urgent",
+    "actions": [
+      "route_to_provider"
+    ],
+    "routed_to": [
+      "provider_refills"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool",
+      "get_medications",
+      "check_refill_eligibility"
+    ],
+    "reply_draft": "Hi Jonathan, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M027",
+    "patient_id": null,
+    "intents": [
+      "records",
+      "third_party"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "decline_disclosure"
+    ],
+    "routed_to": [],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "check_authorized_caregiver"
+    ],
+    "reply_draft": "For privacy, we cannot confirm or disclose patient information without verifying the requester and confirming authorization."
+  },
+  {
+    "id": "M028",
+    "patient_id": "P025",
+    "intents": [
+      "schedule"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "offer_appointment"
+    ],
+    "routed_to": [
+      "front_desk"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool"
+    ],
+    "reply_draft": "Hi Nora, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M029",
+    "patient_id": "P002",
+    "intents": [
+      "schedule"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "offer_appointment"
+    ],
+    "routed_to": [
+      "front_desk"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool"
+    ],
+    "reply_draft": "Hi Robert, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M030",
+    "patient_id": "P019",
+    "intents": [
+      "clinical"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "route_to_clinician"
+    ],
+    "routed_to": [
+      "clinician_routine"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool"
+    ],
+    "reply_draft": "Hi Olivia, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M031",
+    "patient_id": "P007",
+    "intents": [
+      "other"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "acknowledge"
+    ],
+    "routed_to": [],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool"
+    ],
+    "reply_draft": "Hi Priya, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M032",
+    "patient_id": "P010",
+    "intents": [
+      "clinical"
+    ],
+    "urgency": "emergency",
+    "actions": [
+      "escalate_emergency"
+    ],
+    "routed_to": [
+      "clinician_urgent"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool",
+      "route_message"
+    ],
+    "reply_draft": "Your message describes a possible medical emergency. Call 911 or go to the nearest emergency department now. Do not wait for a reply to this message."
+  },
+  {
+    "id": "M033",
+    "patient_id": "P012",
+    "intents": [
+      "admin"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "route_to_front_desk"
+    ],
+    "routed_to": [
+      "front_desk"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool"
+    ],
+    "reply_draft": "Hi William, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M034",
+    "patient_id": "P015",
+    "intents": [
+      "reschedule"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "reschedule_appointment"
+    ],
+    "routed_to": [
+      "front_desk"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool"
+    ],
+    "reply_draft": "Hi Fatima, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M035",
+    "patient_id": "P022",
+    "intents": [
+      "clinical"
+    ],
+    "urgency": "emergency",
+    "actions": [
+      "escalate_emergency"
+    ],
+    "routed_to": [
+      "clinician_urgent"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool",
+      "route_message"
+    ],
+    "reply_draft": "Your message describes a possible medical emergency. Call 911 or go to the nearest emergency department now. Do not wait for a reply to this message."
+  },
+  {
+    "id": "M036",
+    "patient_id": "P017",
+    "intents": [
+      "refill",
+      "third_party"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "route_to_provider"
+    ],
+    "routed_to": [
+      "provider_refills"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "check_authorized_caregiver",
+      "get_medications",
+      "check_refill_eligibility"
+    ],
+    "reply_draft": "Hi Claire, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M037",
+    "patient_id": "P023",
+    "intents": [
+      "admin"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "route_to_front_desk"
+    ],
+    "routed_to": [
+      "front_desk"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool"
+    ],
+    "reply_draft": "Hi Lucy, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M038",
+    "patient_id": null,
+    "intents": [
+      "spam"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "no_action"
+    ],
+    "routed_to": [],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "check_authorized_caregiver"
+    ],
+    "reply_draft": ""
+  },
+  {
+    "id": "M039",
+    "patient_id": "P014",
+    "intents": [
+      "clinical",
+      "schedule"
+    ],
+    "urgency": "urgent",
+    "actions": [
+      "route_to_clinician",
+      "offer_appointment"
+    ],
+    "routed_to": [
+      "clinician_routine",
+      "front_desk"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool"
+    ],
+    "reply_draft": "Hi Kevin, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  },
+  {
+    "id": "M040",
+    "patient_id": "P009",
+    "intents": [
+      "records",
+      "third_party"
+    ],
+    "urgency": "routine",
+    "actions": [
+      "route_to_front_desk"
+    ],
+    "routed_to": [
+      "front_desk"
+    ],
+    "tool_calls": [
+      "llm_classify_message",
+      "assess_urgency",
+      "find_patient",
+      "verify_patient_tool"
+    ],
+    "reply_draft": "Hi Anna, thanks for contacting Maplewood Family Clinic. Your request has been noted. The appropriate team will review it if follow-up is needed."
+  }
+]

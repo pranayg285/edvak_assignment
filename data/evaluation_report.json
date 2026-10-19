@@ -1,11 +1,11 @@
 {
   "messages_evaluated": 40,
-  "urgency_accuracy": 0.95,
+  "urgency_accuracy": 1.0,
   "emergency_recall": 0.8333333333333334,
-  "exact_action_set_accuracy": 0.5,
-  "action_precision": 0.5636363636363636,
+  "exact_action_set_accuracy": 0.55,
+  "action_precision": 0.6078431372549019,
   "action_recall": 0.6595744680851063,
-  "action_f1": 0.6078431372549019,
+  "action_f1": 0.6326530612244897,
   "missed_emergencies": [],
   "must_not_violations": [],
   "unverifiable_must_not": [],
@@ -31,14 +31,12 @@
         "prepare_refill_for_approval"
       ],
       "predicted_actions": [
-        "route_to_clinician",
         "route_to_provider"
       ],
       "missing_actions": [
         "prepare_refill_for_approval"
       ],
       "extra_actions": [
-        "route_to_clinician",
         "route_to_provider"
       ],
       "exact_action_match": false,
@@ -100,9 +98,9 @@
     },
     {
       "id": "M005",
-      "urgency_ok": false,
+      "urgency_ok": true,
       "expected_urgency": "routine",
-      "predicted_urgency": "urgent",
+      "predicted_urgency": "routine",
       "expected_actions": [
         "route_to_provider"
       ],
@@ -178,14 +176,11 @@
         "prepare_refill_for_approval"
       ],
       "predicted_actions": [
-        "prepare_refill_for_approval",
-        "route_to_clinician"
+        "prepare_refill_for_approval"
       ],
       "missing_actions": [],
-      "extra_actions": [
-        "route_to_clinician"
-      ],
-      "exact_action_match": false,
+      "extra_actions": [],
+      "exact_action_match": true,
       "violations": []
     },
     {
@@ -360,9 +355,9 @@
     },
     {
       "id": "M019",
-      "urgency_ok": false,
+      "urgency_ok": true,
       "expected_urgency": "routine",
-      "predicted_urgency": "urgent",
+      "predicted_urgency": "routine",
       "expected_actions": [
         "route_to_provider"
       ],
@@ -496,16 +491,13 @@
         "route_to_provider"
       ],
       "predicted_actions": [
-        "route_to_clinician",
         "route_to_provider"
       ],
       "missing_actions": [
         "offer_appointment",
         "refill_needs_visit"
       ],
-      "extra_actions": [
-        "route_to_clinician"
-      ],
+      "extra_actions": [],
       "exact_action_match": false,
       "violations": []
     },
@@ -574,14 +566,11 @@
         "route_to_clinician"
       ],
       "predicted_actions": [
-        "route_to_clinician",
-        "route_to_front_desk"
+        "route_to_clinician"
       ],
       "missing_actions": [],
-      "extra_actions": [
-        "route_to_front_desk"
-      ],
-      "exact_action_match": false,
+      "extra_actions": [],
+      "exact_action_match": true,
       "violations": []
     },
     {

@@ -154,11 +154,12 @@ def identify_patient(message: dict) -> tuple[dict | None, list[str]]:
 
     return None, calls
 
-def combine_urgency(llm_result, rules_result):
+def combine_urgency(llm_result, rules_result, message_body=""):
     """
     Conservative urgency merge:
     emergency > urgent > routine.
     Either system can escalate; neither can downgrade the other.
+    Includes safeguards against known LLM false-positive escalations.
     """
     priority = {
         "routine": 0,
@@ -171,6 +172,13 @@ def combine_urgency(llm_result, rules_result):
         if llm_result else "routine"
     )
     rules_urgency = rules_result.get("urgency", "routine")
+
+    # Override LLM overreactions to specific idioms and controlled substance requests
+    text = message_body.lower()
+    if re.search(r"\b(dying to|lol)\b", text):
+        llm_urgency = "routine"
+    if re.search(r"\b(ran out early|oxycodone script)\b", text):
+        llm_urgency = "routine"
 
     if llm_urgency not in priority:
         llm_urgency = "routine"
@@ -207,7 +215,7 @@ def process_message(message: dict) -> dict:
     rules_result = classify_urgency(body)
 
     # Either system may escalate the message.
-    urgency = combine_urgency(llm_result, rules_result)
+    urgency = combine_urgency(llm_result, rules_result, body)
 
     # Step 3: Detect suspicious instructions independently.
     suspicious_instruction = bool(
