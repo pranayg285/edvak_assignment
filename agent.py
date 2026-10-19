@@ -301,33 +301,47 @@ def process_message(message: dict) -> dict:
                 )
                 tool_calls.append("check_refill_eligibility")
                 eligibility = check_refill_eligibility(patient_id, med_name)
-                
-                print(
-                    f"DEBUG REFILL | patient={patient_id} "
-                    f"medication={med_name!r} "
-                    f"eligibility={eligibility!r} "
-                    f"type={type(eligibility).__name__}"
-                )
-
+            
                 # Adapt this branch to the exact return structure of your
                 # check_refill_eligibility function after inspecting its output.
-                status = str(eligibility).lower()
-
-                if "controlled" in status:
-                    actions.append("route_to_provider")
-                    queues.append("provider_refills")
-                elif "too_early" in status or "too early" in status:
-                    actions.append("refill_too_early")
-                    queues.append("provider_refills")
-                elif "visit" in status or "last_visit" in status:
-                    actions.extend(["refill_needs_visit", "offer_appointment"])
-                    queues.append("provider_refills")
-                elif "eligible" in status or "approved" in status:
-                    actions.append("prepare_refill_for_approval")
-                    queues.append("provider_refills")
+                if isinstance(eligibility, dict):
+                    status_text = str(eligibility.get("status", "")).lower()
+                    is_eligible = eligibility.get("eligible", False)
+                    
+                    if "controlled" in status_text or eligibility.get("controlled"):
+                        actions.append("route_to_provider")
+                        queues.append("provider_refills")
+                    elif "too_early" in status_text or "too early" in status_text:
+                        actions.append("refill_too_early")
+                        queues.append("provider_refills")
+                    elif "visit" in status_text or "last_visit" in status_text:
+                        actions.extend(["refill_needs_visit", "offer_appointment"])
+                        queues.append("provider_refills")
+                    elif is_eligible or status_text == "eligible" or "approved" in status_text:
+                        actions.append("prepare_refill_for_approval")
+                        queues.append("provider_refills")
+                    else:
+                        # Catches cases like zero refills or expired prescriptions
+                        actions.append("route_to_provider")
+                        queues.append("provider_refills")
                 else:
-                    actions.append("route_to_provider")
-                    queues.append("provider_refills")
+                    # Fallback if eligibility is just a string
+                    status = str(eligibility).lower()
+                    if "controlled" in status:
+                        actions.append("route_to_provider")
+                        queues.append("provider_refills")
+                    elif "too_early" in status or "too early" in status:
+                        actions.append("refill_too_early")
+                        queues.append("provider_refills")
+                    elif "visit" in status or "last_visit" in status:
+                        actions.extend(["refill_needs_visit", "offer_appointment"])
+                        queues.append("provider_refills")
+                    elif "eligible" in status or "approved" in status:
+                        actions.append("prepare_refill_for_approval")
+                        queues.append("provider_refills")
+                    else:
+                        actions.append("route_to_provider")
+                        queues.append("provider_refills")
             else:
                 actions.append("route_to_provider")
                 queues.append("provider_refills")
